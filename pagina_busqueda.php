@@ -1,26 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Conectando la web con la BBDD</title>
-</head>
-<style>
-
-    table {
-        width: 50%;
-        border:1px dotted #FF0000;
-        margin: auto;
-    }
-</style>
-<body>
-    <?php
+<?php
     
+    $busqueda= $_GET["buscar"];
         require("Datos_conexion.php");
         mysqli_select_db($conexion, $db_nombre) or die ("No se encuentra la Base de datos");
         mysqli_set_charset($conexion, "utf8");
 
-        $consulta="select * from tarjetas";
+        //$consulta="select * from tarjetas where Cedula = '$busqueda'";
+
+        $consulta="select * from tarjetas where Cedula = '$busqueda'";
+
+        echo "$consulta <br><br>";
         
 
         $resultados=mysqli_query($conexion, $consulta);
@@ -38,6 +27,4 @@
 
                 mysqli_close($conexion);
 
-    ?>
-</body>
-</html>
+?>

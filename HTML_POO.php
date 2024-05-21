@@ -1,5 +1,8 @@
 <?php
     require "Devuelve_usuario.php";
+
+    //$cedula=$_GET["buscar"];
+
     $usuarios= new DevuelveUsuarios();
     $array_usuarios= $usuarios->get_Usuario();
 ?>

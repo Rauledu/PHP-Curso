@@ -6,7 +6,7 @@
     <title>Document</title>
 </head>
 <body>
-    <form action="Consulta_preparada.php" method="get">
+    <form action="Devuelve_usuario.php" method="get">
 
         <label> Introduce el ID: <input type= "text" name="buscar"></label><br>
         <input type="submit" name="enviando" value="Dale!"/>

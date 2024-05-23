@@ -6,6 +6,4 @@ if (isset($_COOKIE["prueba"])) {
     echo "la cookie no se ha creado";
 }
 
-
-
 ?>

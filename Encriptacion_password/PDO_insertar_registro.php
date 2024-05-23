@@ -5,7 +5,7 @@
        $direccion=$_POST["direc"];
        $password=$_POST["psw"];
 
-       $pass_cifrado=password_hash($password, PASSWORD_DEFAULT);
+       $pass_cifrado=md5($password);
 
         try{
             $base = new PDO('mysql:host=localhost; dbname=usuario', 'root', '');

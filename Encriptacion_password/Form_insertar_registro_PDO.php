@@ -20,7 +20,7 @@ body{
 </head>
 <body>
     <h1>Ingresar datos del usuario</h1>
-    <form action="PDO_insertar_registro.php" method="get">
+    <form action="PDO_insertar_registro.php" method="post">
     <table>
     <tr><td>
         <tr><td><label> Introduce el ID:</label></td><td><input type= "text" name="ID" id="ID"></td></tr>

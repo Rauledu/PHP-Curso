@@ -19,7 +19,7 @@ body{
 
 </head>
 <body>
-    <h1>Ingresar datos del usuario</h1>
+    <h1>Ingresar datos del usuario para registrar</h1>
     <form action="PDO_insertar_registro.php" method="post">
     <table>
     <tr><td>

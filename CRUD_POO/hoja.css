@@ -1,0 +1,28 @@
+
+.subtitulo{
+    font-size: medium;
+}
+
+h1{
+    text-align: center;
+}
+
+table, th,td{
+    border: 1px solid;
+    padding: 15px;
+    
+}
+
+td {
+    /* color: chocolate; */
+    text-align: center;
+}
+
+.primerafila{
+    text-decoration: black;
+    background-color: bisque;
+}
+
+body{
+    background:burlywood;
+}

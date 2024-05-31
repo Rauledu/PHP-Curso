@@ -19,7 +19,7 @@ if ($tamaño_imagen<=3000000) {
     
 //Ruta de la carpeta destino en servidor
 
-$carpeta_destino = $_SERVER['DOCUMENT_ROOT'] . '/uploads/';
+$carpeta_destino = $_SERVER['DOCUMENT_ROOT'] . '\uploads';
 
 //Movemos la imagen del directorio temporal al directorio elegido.
 

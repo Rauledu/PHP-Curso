@@ -8,11 +8,11 @@ include_once("Objeto_blog.php");
 
         public function __construct($conexion){
 
-            $this->conexion = $conexion;
+            $this->setConexion($conexion);
 
         }
 
-    public function getConexion(PDO $conexion){
+    public function setConexion(PDO $conexion){
 
 
             $this->conexion = $conexion;
@@ -31,7 +31,7 @@ include_once("Objeto_blog.php");
 
                         $blog=new Objeto_blog();
 
-                        $blog->setId($registro["ID"]);
+                        $blog->setId($registro["Id"]);
 
                         $blog->setTitulo($registro["titulo"]);
 

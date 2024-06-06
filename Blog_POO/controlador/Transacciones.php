@@ -1,22 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <?php
+   <?php
     
-        $miconexion=mysqli_connect("localhost", "root","", "bbddblog");
+        include_once("../modelo/Objeto_blog.php");
 
-        /*comprobando conexion*/
+        include_once("../modelo/Manejo_objetos.php");
 
-        if (!$miconexion) {
+        try {
+            
+            $miconexion= new PDO('mysqli: host=localhost; dbname=bbddblog', 'root', '');
 
-            echo "La conexion ha fallado";
-            exit();
-        }
+
+            $miconexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
         if($_FILES['imagen']['error']){
 
@@ -49,7 +42,7 @@
             if ((isset($_FILES['imagen']['name']) && ($_FILES['imagen']['error']) == UPLOAD_ERR_OK)) {
                 
 
-                $detino_ruta="imagenes/";
+                $detino_ruta="../imagenes/";
 
                 move_uploaded_file($_FILES['imagen']['tmp_name'], $detino_ruta . $_FILES['imagen']['name']);
 
@@ -62,34 +55,35 @@
                 echo "El archivo no se ha podio copiar al directorio de imagenes";
 
 
+                }
             }
+         
+      
+
+
+            $manejo_objeto= new Manejo_Objetos($miconexion);
+
+            $blog= new Objeto_blog();
+
+            $blog->setTitulo(htmlentities(addslashes($_POST['campo_titulo']), ENT_QUOTES));
+
+            date_default_timezone_set('America/Caracas');
+
+            $blog->setFecha(date("Y-m-d H:i:s"));
+
+            $blog->setComentario(htmlentities(addslashes($_POST['area_comentarios']), ENT_QUOTES));
+
+            $blog->setimagen($_FILES["imagen"]["name"]);
+
+            $manejo_objeto->insertaContenido($blog);
+
+            echo "<br/> Entrada de blog agregada con exito <br/>";
+
+        }catch(Exception $e){
+
+            die("Error: " . $e->getMessage());
         }
 
-        date_default_timezone_set('America/Caracas');
-
-        $titulo=$_POST['campo_titulo'];
-        $fecha=date("Y-m-d H:i:s");
-        $comentario=$_POST['area_comentarios'];
-        $imagen=$_FILES['imagen']['name'];
-
-        $miconsulta="INSERT INTO contenido (titulo,fecha,comentario,imagen) 
-        values('$titulo', '$fecha', '$comentario', '$imagen')";
-    
-        $resultado= mysqli_query($miconexion, $miconsulta);
-
-        //Cerramos conexion
-
-        mysqli_close($miconexion);
-
-        echo "<br/> Se ha agregado el comentario con exito. <br/><br/>";
-    
+        
     
     ?>
-
-    <a href="Formulario.php">Añadir nueva entrada</a>
-        
-    <a href="MostrarBlog.php">Ver blog</a>
-
-
-</body>
-</html>
